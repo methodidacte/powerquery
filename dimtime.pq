@@ -3,7 +3,7 @@ let
     #"Converti en table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
     #"Colonnes renommées" = Table.RenameColumns(#"Converti en table",{{"Column1", "Hours"}}),
     #"Personnalisée ajoutée" = Table.AddColumn(#"Colonnes renommées", "Minutes", each {0..59}),
-    #"Minutes développé" = Table.ExpandListColumn(#"Personnalisée ajoutée", "Minuts"),
+    #"Minutes développé" = Table.ExpandListColumn(#"Personnalisée ajoutée", "Minutes"),
     #"Personnalisée ajoutée1" = Table.AddColumn(#"Minutes développé", "Seconds", each {0..59}),
     #"Seconds développé" = Table.ExpandListColumn(#"Personnalisée ajoutée1", "Seconds"),
     #"Personnalisée ajoutée2" = Table.AddColumn(#"Seconds développé", "Time", each #time([Hours],[Minutes],[Seconds])),
